@@ -57,7 +57,6 @@
 (defun multiplication(poly1 poly2)
     (setq tripletsA (make-array 100 :fill-pointer 0))
     (setq tripletsR (make-array 100 :fill-pointer 0))
-    (setq tripletsR (make-array 100 :fill-pointer 0))
 
     (setq length_poly1 (length poly1))
     (setq length_poly2 (length poly2))
@@ -68,14 +67,20 @@
     (loop
       (loop
 
-        (setq tripletsA (elt poly1 0)) ; primer vector
-        (setq first_element_p1 (elt  (elt poly1 0) i))   ; 0 de poly1
-        (setq second_element_p1 (elt (elt poly1 1) i))   ; 1 de poly2
-        (setq third_element_p1 (elt  (elt poly1 2) i))   ; 2 de poly1
+        (setq tripletsA (elt poly1 i)) ; primer vector del poly1
+        (setq tripletsB (elt poly2 j)) ; primer vector del poly2
 
-        (setq a (* first_element_p1 (elt (elt poly2 0) j)))
-        (setq b (+ first_element_p1 (elt (elt poly2 1) j)))
-        (setq c (+ first_element_p1 (elt (elt poly2 2) j)))
+        (setq first_element_p1  (elt  tripletsA 0))   ; [i][0] de poly1
+        (setq second_element_p1 (elt  tripletsA 1))   ; [i][1] de poly2
+        (setq third_element_p1  (elt  tripletsA 2))   ; [i][2] de poly1
+
+        (setq first_element_p2  (elt  tripletsB 0))   ; [j][0] de poly2
+        (setq second_element_p2 (elt  tripletsB 1))   ; [j][1] de poly2
+        (setq third_element_p2  (elt  tripletsB 2))   ; [j][2] de poly2s
+
+        (setq a (* first_element_p1 first_element_p2))
+        (setq b (+ first_element_p1 second_element_p2))
+        (setq c (+ first_element_p1 third_element_p2))
 
         (vector-push a tripletsR)
         (vector-push b tripletsR)
